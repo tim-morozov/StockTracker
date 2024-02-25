@@ -1,19 +1,18 @@
-<!doctype html>
-<html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <title>"StockTracker"</title>
-      <meta name="description" content="Stock trading website">
-      <meta name="author" content="IFT401 Group 14">
-      <link rel="stylesheet" href="css/css.css">
-   </head>
-   <body>
-      <h1>StockTracker</h1>
-      <p></p>
-      <div class="div1">
-         <a href="index.html">Stocks</a> | <a href="user.html">User</a> | <a href="administrator.html">Administrator</a> | <a href="account.html">Account</a>
-         </div>
-      </p>
-      <p>This is where the current stocks availble to trade will be seen</p>
-   </body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title th:text="#{stock.tracker}">StockTracker</title>
+    <meta name="description" content="Stock trading website">
+    <meta name="author" content="IFT401 Group 14">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <h1 th:text="#{stock.tracker}">StockTracker</h1>
+    <p></p>
+    <div class="div1">
+        <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
+    </div>
+    <p th:text="#{current.stocks}">This is where the current stocks available to trade will be seen</p>
+</body>
 </html>
