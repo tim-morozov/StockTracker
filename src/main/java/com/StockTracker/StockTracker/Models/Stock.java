@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-public class Stock {
+public class Stock extends Object {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

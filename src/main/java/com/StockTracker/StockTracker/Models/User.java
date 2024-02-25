@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Users")
-public class User {
+public class User extends Object {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -46,6 +46,15 @@ public class User {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    public void setFirstName(String firstName) {
+        FirstName = firstName;
+    }
+
 
     public String getLastName() {
         return LastName;
