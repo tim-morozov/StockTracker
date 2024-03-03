@@ -1,19 +1,16 @@
 package com.StockTracker.StockTracker.Controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping({"/", "/index"})
-public class HomeController {
+@RequestMapping("/account")
+public class AccountController {
 
     @RequestMapping()
-    public ModelAndView Index(){
-        ModelAndView mav = new ModelAndView("index");
-
+    public ModelAndView Account(){
+        ModelAndView mav = new ModelAndView("account");
         return mav;
     }
-
 }

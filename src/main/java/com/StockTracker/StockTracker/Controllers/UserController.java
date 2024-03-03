@@ -7,16 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.Instant;
-import java.util.Date;
-import java.util.List;
+
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 
-    @RequestMapping("/user")
+    @RequestMapping()
     public ModelAndView User() {
         ModelAndView mav = new ModelAndView("user");
         return mav;
