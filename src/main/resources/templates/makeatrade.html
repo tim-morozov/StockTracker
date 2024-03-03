@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title th:text="#{stock.tracker}">StockTracker - Make a Trade</title>
+    <meta name="description" content="Stock trading website">
+    <meta name="author" content="IFT401 Group 14">
+    <link rel="stylesheet" href="./css/css.css">
+</head>
+<body>
+    <h1 th:text="#{stock.tracker}">StockTracker</h1>
+    <p></p>
+    <div class="div1">
+        <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
+    </div>
+    <p th:text="#{user.functions}">User Functions</p>
+    <p>Make a Trade Page Content</p>
+    <!-- Add content for making a trade here -->
+</body>
+</html>
