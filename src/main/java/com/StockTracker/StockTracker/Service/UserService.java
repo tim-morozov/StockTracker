@@ -1,6 +1,6 @@
-package com.StockTracker.StockTracker.Services;
+package com.StockTracker.StockTracker.Service;
 
-import com.StockTracker.StockTracker.Repositories.UserRepository;
+import com.StockTracker.StockTracker.Repository.UserRepository;
 import com.StockTracker.StockTracker.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
+
     private UserRepository userRepository;
 
     public User GetUser(short id){

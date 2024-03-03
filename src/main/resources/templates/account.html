@@ -2,40 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title th:text="#{stock.tracker}">StockTracker</title>
+    <title>StockTracker</title>
     <meta name="description" content="Stock trading website">
     <meta name="author" content="IFT401 Group 14">
-    <link rel="stylesheet" href="css.css">
+    <link href="../static/css/css.css" th:href="@{/css/css.css}" rel="stylesheet" />
 </head>
 <body>
-    <h1 th:text="#{stock.tracker}">StockTracker</h1>
+    <h1>StockTracker</h1>
     <p></p>
     <div class="div1">
         <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
     </div>
-    <p th:text="#{account.creation.form}">Account Creation Form</p>
+    <p>Account Creation Form</p>
     <form name="myForm" th:action="@{/createAccount}" method="post" onsubmit="return validator()">
         <div class="divMain">
             <div class="divLabel">
-                <label for="fname" class="title" th:text="#{first.name}">First Name: </label>
+                <label for="fname" class="title">First Name: </label>
             </div>
             <div class="divField">
                 <input type="text" id="fname" name="fname" maxlength="30"><br>
             </div>
             <div class="divLabel">
-                <label for="lname" class="title" th:text="#{last.name}">Last Name: </label>
+                <label for="lname" class="title">Last Name: </label>
             </div>
             <div class="divField">
                 <input type="text" id="lname" name="lname" maxlength="30"><br>
             </div>
             <div class="divLabel">
-                <label for="username" class="title" th:text="#{username}">Username:  </label>
+                <label for="username" class="title">Username:  </label>
             </div>
             <div class="divField">
                 <input type="text" id="username" name="username" maxlength="30"><br>
             </div>
             <div class="divLabel">
-                <label for="password" class="title" th:text="#{password}">Password:  </label>
+                <label for="password" class="title">Password:  </label>
             </div>
             <div class="divField">
                 <input type="text" id="password" name="password" minlength="16"><br>

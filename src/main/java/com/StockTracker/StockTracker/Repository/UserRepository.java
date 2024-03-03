@@ -1,6 +1,5 @@
-package com.StockTracker.StockTracker.Repositories;
+package com.StockTracker.StockTracker.Repository;
 
-import com.StockTracker.StockTracker.Models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
