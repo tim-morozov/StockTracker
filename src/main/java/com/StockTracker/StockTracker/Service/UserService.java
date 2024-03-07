@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-
+    @Autowired
     private UserRepository userRepository;
 
     public User GetUser(short id){
