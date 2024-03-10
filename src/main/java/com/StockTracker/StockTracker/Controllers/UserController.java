@@ -20,6 +20,23 @@ public class UserController {
         return mav;
     }
 
+    @RequestMapping("/managecash")
+    public ModelAndView ManageCash(){
+        ModelAndView mav = new ModelAndView("managecash");
+        return  mav;
+    }
+
+    @RequestMapping("/viewusertradinghistory")
+    public ModelAndView ViewUserTradingHistory(){
+        ModelAndView mav = new ModelAndView("viewusertradinghistory");
+        return  mav;
+    }
+
+    @RequestMapping("/makeatrade")
+    public ModelAndView MakeATrade(){
+        ModelAndView mav = new ModelAndView("makeatrade");
+        return mav;
+    }
 
 
 

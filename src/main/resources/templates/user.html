@@ -2,20 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title th:text="#{stock.tracker}">StockTracker</title>
+    <title>StockTracker</title>
     <meta name="description" content="Stock trading website">
     <meta name="author" content="IFT401 Group 14">
     <link rel="stylesheet" href="./css/css.css">
     <body>
-        <h1 th:text="#{stock.tracker}">StockTracker</h1>
+        <h1>StockTracker</h1>
         <p></p>
         <div class="div1">
             <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
         </div>
-        <p th:text="#{user.functions}">User Functions</p>
-        <p th:text="#{user.functions}">What would you like to do?</p>
-        <p><a th:href="@{/managecash}">Manage Cash</a></p>
-        <p><a th:href="@{/viewusertradinghistory}">View Trading History</a></p>
-        <p><a th:href="@{/makeatrade}">Make a Trade</a></p>
+        <p>User Functions</p>
+        <p>What would you like to do?</p>
+        <p><a th:href="@{user/managecash}">Manage Cash</a></p>
+        <p><a th:href="@{user/viewusertradinghistory}">View Trading History</a></p>
+        <p><a th:href="@{user/makeatrade}">Make a Trade</a></p>
     </body>
     </html>
