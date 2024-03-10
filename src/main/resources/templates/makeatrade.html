@@ -14,7 +14,22 @@
         <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
     </div>
     <p th:text="#{user.functions}">User Functions</p>
-    <p>Make a Trade Page Content</p>
-    <!-- Add content for making a trade here -->
+    <p>Make a Trade</p>
+    
+    <form th:action="@{/makeTrade}" method="post">
+        <label for="stockTicker">Stock Ticker:</label>
+        <input type="text" id="stockTicker" name="stockTicker" required>
+
+        <label for="numberOfShares">Number of Shares:</label>
+        <input type="number" id="numberOfShares" name="numberOfShares" required>
+
+        <label for="tradeType">Trade Type:</label>
+        <select id="tradeType" name="tradeType" required>
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+        </select>
+
+        <button type="submit">Submit Trade</button>
+    </form>
 </body>
 </html>
