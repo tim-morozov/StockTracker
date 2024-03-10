@@ -14,6 +14,11 @@ public class StockService {
     private StockRepository stockRepository;
 
     public List<Stock> GetAllStocks(){
+
         return stockRepository.findAll();
+    }
+
+    public void SaveStock(Stock stock){
+        stockRepository.save(stock);
     }
 }

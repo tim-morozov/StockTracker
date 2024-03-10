@@ -15,6 +15,10 @@ public class Stock extends Object {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long StockId;
 
+
+    @NotBlank
+    private String CompanyName;
+
     @NotBlank
     private String Ticker;
 
@@ -27,42 +31,61 @@ public class Stock extends Object {
     private Date UpdateDate;
 
     public long getStockId() {
+
         return StockId;
     }
 
     public void setStockId(long stockId) {
+
         StockId = stockId;
     }
 
+    public String getCompanyName() {
+        return CompanyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        CompanyName = companyName;
+    }
+
+
     public String getTicker() {
+
         return Ticker;
     }
 
     public void setTicker(String ticker) {
+
         Ticker = ticker;
     }
 
     public double getPrice() {
+
         return Price;
     }
 
     public void setPrice(double price) {
+
         Price = price;
     }
 
     public double getVolume() {
+
         return Volume;
     }
 
     public void setVolume(double volume) {
+
         Volume = volume;
     }
 
     public Date getUpdateDate() {
+
         return UpdateDate;
     }
 
     public void setUpdateDate(Date updateDate) {
+
         UpdateDate = updateDate;
     }
 }
