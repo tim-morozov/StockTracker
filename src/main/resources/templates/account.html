@@ -30,16 +30,23 @@
                 <input type="text" id="lname" name="lname" maxlength="30" th:field="*{LastName}"><br>
             </div>
             <div class="divLabel">
-                <label for="username" class="title">Email Address:  </label>
+                <label for="email" class="title">Email Address:  </label>
             </div>
             <div class="divField">
-                <input type="text" id="username" name="username" maxlength="30" minlength="5" th:field="*{EmailAddress}"><br>
+                <input type="email" id="email" name="email" maxlength="50" th:field="*{EmailAddress}"><br>
+            </div>
+            <div class="divLabel">
+                <label for="username" class="title">Username:  </label>
+            </div>
+            <div class="divField">
+                <input type="text" id="username" name="username" maxlength="30" minlength="5" th:field="*{Username}"><br>
             </div>
             <div class="divLabel">
                 <label for="password" class="title">Password:  </label>
             </div>
             <div class="divField">
-                <input type="text" id="password" name="password" minlength="16" th:field="*{Password}"><br>
+                <input type="password" id="password" name="password" minlength="16" th:field="*{Password}">
+                <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Show</button><br>
             </div>
             <div class="divButton">
                 <input type="checkbox" name="checkbox" class="button" value="1" th:field="*{UserType}">   Administrator?
@@ -48,9 +55,22 @@
             <div class="divButton">
                 <input type="submit" name="submit" class="button" value="Create Account">
             </div>
-
         </div>
     </form>
     <script src="./js/account_field_check.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var button = document.querySelector(".toggle-password");
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                button.textContent = "Hide";
+            } else {
+                passwordField.type = "password";
+                button.textContent = "Show";
+            }
+        }
+    </script>
 </body>
 </html>
