@@ -46,6 +46,40 @@
     </form>
 
     <h2>Change Market Schedule</h2>
-    <!-- not sure how im gonna work this one yet -->
+    <form action="/administrator/changemarketschedule" method="post">
+        <label>Days the Market is Open:</label><br>
+        <input type="checkbox" id="monday" name="days[]" value="Monday">
+        <label for="monday">Monday</label><br>
+        <input type="checkbox" id="tuesday" name="days[]" value="Tuesday">
+        <label for="tuesday">Tuesday</label><br>
+        <input type="checkbox" id="wednesday" name="days[]" value="Wednesday">
+        <label for="wednesday">Wednesday</label><br>
+        <input type="checkbox" id="thursday" name="days[]" value="Thursday">
+        <label for="thursday">Thursday</label><br>
+        <input type="checkbox" id="friday" name="days[]" value="Friday">
+        <label for="friday">Friday</label><br>
+        <input type="checkbox" id="saturday" name="days[]" value="Saturday">
+        <label for="saturday">Saturday</label><br>
+        <input type="checkbox" id="sunday" name="days[]" value="Sunday">
+        <label for="sunday">Sunday</label><br>
+    <!-- Still looking into this holiday option thing -->
+        <label for="holiday">Select Holiday:</label>
+        <select id="holiday" name="holiday">
+            <option value="">-- Select Holiday --</option>
+            <option value="New Year's Day">New Year's Day</option>
+            <option value="Martin Luther King Jr. Day">Martin Luther King Jr. Day</option>
+            <option value="Presidents Day">Presidents Day</option>
+            <option value="Good Friday">Good Friday</option>
+            <option value="Memorial Day">Memorial Day</option>
+            <option value="Independence Day">Independence Day</option>
+            <option value="Labor Day">Labor Day</option>
+            <option value="Thanksgiving Day">Thanksgiving Day</option>
+            <option value="Christmas Day">Christmas Day</option>
+            <!-- Add more holidays as needed -->
+        </select><br>
+    
+        <button type="submit">Change Market Schedule</button>
+    </form>
 </body>
 </html>
+
