@@ -26,7 +26,8 @@
                 <label for="loginPassword" class="title" th:text="#{password}">Password:  </label>
             </div>
             <div class="divField">
-                <input type="password" id="loginPassword" name="loginPassword" minlength="16"><br>
+                <input type="password" id="loginPassword" name="loginPassword" minlength="16">
+                <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Show</button><br>
             </div>
             <br>
             <div class="divButton">
@@ -34,5 +35,19 @@
             </div>
         </div>
     </form>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("loginPassword");
+            var button = document.querySelector(".toggle-password");
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                button.textContent = "Hide";
+            } else {
+                passwordField.type = "password";
+                button.textContent = "Show";
+            }
+        }
+    </script>
 </body>
 </html>
