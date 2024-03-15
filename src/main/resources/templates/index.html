@@ -14,5 +14,50 @@
         <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
     </div>
     <p>This is where the current stocks available to trade will be seen</p>
+    <table id="stockTable">
+        <thead>
+            <tr>
+                <th>Stock Ticker</th>
+                <th>Price</th>
+                <th>Volume</th>
+                <th>Market Capitalization</th>
+                <th>Opening Price</th>
+                <th>High</th>
+                <th>Low</th>
+            </tr>
+        </thead>
+        <tbody id="stockData">
+            <!-- Stock data should be inserted here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        function updateStockData() {
+            fetch('/getStockData') // This endpoint probably needs to be created
+                .then(response => response.json())
+                .then(data => {
+                    const stockDataContainer = document.getElementById('stockData');
+                    stockDataContainer.innerHTML = ''; // Clear existing data
+
+                    data.forEach(stock => {
+                        const row = document.createElement('tr');
+                        const marketCap = stock.price * stock.volume;
+                        row.innerHTML = `
+                            <td>${stock.ticker}</td>
+                            <td>${stock.price}</td>
+                            <td>${stock.volume}</td>
+                            <td>${marketCap}</td>
+                            <td>${stock.openingPrice}</td>
+                            <td>${stock.high}</td>
+                            <td>${stock.low}</td>
+                        `;
+                        stockDataContainer.appendChild(row);
+                    });
+                });
+        }
+
+        // Update stock data every second (i think)
+        setInterval(updateStockData, 1000);
+    </script>
 </body>
 </html>
