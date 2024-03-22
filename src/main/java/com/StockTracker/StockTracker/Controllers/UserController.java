@@ -20,8 +20,7 @@ public class UserController {
 
     @RequestMapping()
     public ModelAndView User() {
-        ModelAndView mav = new ModelAndView("user");
-        return mav;
+        return new ModelAndView("user");
     }
 
     @RequestMapping("/managecash")
@@ -38,8 +37,7 @@ public class UserController {
         user.setBalance(NewBalance);
         userService.SaveUser(user);
 
-        ModelAndView mav = new ModelAndView("user");
-        return mav;
+        return new ModelAndView("user");
     }
 
     @PostMapping("/processWithdraw")
@@ -50,23 +48,22 @@ public class UserController {
 
         userService.SaveUser(user);
 
-        ModelAndView mav = new ModelAndView("user");
-        return mav;
+        return new ModelAndView("user");
     }
 
 
 
     @RequestMapping("/viewusertradinghistory")
     public ModelAndView ViewUserTradingHistory(){
-        ModelAndView mav = new ModelAndView("viewusertradinghistory");
-        return  mav;
+        return new ModelAndView("viewusertradinghistory");
     }
 
     @RequestMapping("/makeatrade")
     public ModelAndView MakeATrade(){
-        ModelAndView mav = new ModelAndView("makeatrade");
-        return mav;
+        return new ModelAndView("makeatrade");
     }
+
+
 
 
 

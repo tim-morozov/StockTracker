@@ -3,6 +3,7 @@ package com.StockTracker.StockTracker.Controllers;
 import com.StockTracker.StockTracker.Models.User;
 import com.StockTracker.StockTracker.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,9 @@ public class AccountController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
 
     @RequestMapping()
     public ModelAndView Account(){
@@ -32,6 +36,7 @@ public class AccountController {
     @PostMapping("/createAccount")
     public String SaveUser(@ModelAttribute("user") User user, BindingResult result){
 
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setCreateDate(new Date());
         user.setUpdateDate(new Date());
 

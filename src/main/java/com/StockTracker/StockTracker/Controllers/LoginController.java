@@ -5,6 +5,7 @@ import com.StockTracker.StockTracker.Models.ViewModels.LoginViewModel;
 import com.StockTracker.StockTracker.Service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +19,8 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @RequestMapping()
     public ModelAndView Login(){
@@ -37,8 +40,7 @@ public class LoginController {
             mav.addObject("user");
             return mav;
         } else {
-           ModelAndView mav = new ModelAndView("index");
-           return mav;
+            return new ModelAndView("index");
        }
 
 
@@ -46,10 +48,10 @@ public class LoginController {
 
     private boolean ValidateLogin(LoginViewModel login){
         User validUser = userService.GetUserByUserName(login.getUserName());
-
+        var passToAuthenticate = passwordEncoder.encode(login.getPassword());
         if (validUser == null){
            return  false;
-        } else if (!validUser.getPassword().equals(login.getPassword())) {
+        } else if (!validUser.getPassword().equals(passToAuthenticate)) {
             return false;
         } else {
             return true;

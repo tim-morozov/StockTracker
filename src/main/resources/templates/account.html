@@ -21,19 +21,19 @@
                 <label for="fname" class="title">First Name: </label>
             </div>
             <div class="divField">
-                <input type="text" id="fname" name="fname" maxlength="30" th:field="*{FirstName}"><br>
+                <input type="text" id="fname" name="fname" maxlength="30" th:field="*{firstName}"><br>
             </div>
             <div class="divLabel">
                 <label for="lname" class="title" >Last Name: </label>
             </div>
             <div class="divField">
-                <input type="text" id="lname" name="lname" maxlength="30" th:field="*{LastName}"><br>
+                <input type="text" id="lname" name="lname" maxlength="30" th:field="*{lastName}"><br>
             </div>
             <div class="divLabel">
                 <label for="email" class="title">Email Address:  </label>
             </div>
             <div class="divField">
-                <input type="email" id="email" name="email" maxlength="50" th:field="*{EmailAddress}"><br>
+                <input type="email" id="email" name="email" maxlength="50" th:field="*{emailAddress}"><br>
             </div>
             <div class="divLabel">
                 <label for="username" class="title">Username:  </label>
@@ -49,7 +49,7 @@
                 <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Show</button><br>
             </div>
             <div class="divButton">
-                <input type="checkbox" name="checkbox" class="button" value="1" th:field="*{UserType}">   Administrator?
+                <input type="checkbox" name="checkbox" class="button" value="1" th:field="*{userType}">   Administrator?
             </div>
             <br>
             <div class="divButton">
