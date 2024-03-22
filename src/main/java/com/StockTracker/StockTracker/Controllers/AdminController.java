@@ -1,5 +1,6 @@
 package com.StockTracker.StockTracker.Controllers;
 
+import com.StockTracker.StockTracker.Models.Market;
 import com.StockTracker.StockTracker.Models.Stock;
 import com.StockTracker.StockTracker.Service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,9 @@ public class AdminController {
     public ModelAndView Admin(){
         ModelAndView mav = new ModelAndView("administrator");
         Stock stock = new Stock();
+        Market market = new Market();
         mav.addObject("stock", stock);
+        mav.addObject("market",market);
 
         return mav;
     }
@@ -37,5 +40,7 @@ public class AdminController {
 
         return "redirect:/administrator";
     }
+
+    //@PostMapping("")
 
 }

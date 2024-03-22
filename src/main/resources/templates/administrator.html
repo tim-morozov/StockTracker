@@ -2,18 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title th:text="#{stock.tracker}">StockTracker</title>
+    <title>StockTracker</title>
     <meta name="description" content="Stock trading website">
     <meta name="author" content="IFT401 Group 14">
     <link rel="stylesheet" href="./css/css.css">
 </head>
 <body>
-    <h1 th:text="#{stock.tracker}">StockTracker</h1>
+    <h1>StockTracker</h1>
     <p></p>
     <div class="div1">
         <a th:href="@{/stocks}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
     </div>
-    <p th:text="#{administrator.functions}">Administrator Functions</p>
+    <p>Administrator Functions</p>
 
     <h2>Create New Stock</h2>
 
@@ -35,7 +35,7 @@
 
     <h2>Change Market Hours</h2>
 
-    <form action="/administrator/changemarkethours" method="post">
+    <form action="/administrator/changemarkethours" method="post" th:object="${market}">
         <label for="newMarketOpening">New Market Opening Time:</label>
         <input type="time" id="newMarketOpening" name="newMarketOpening" placeholder="HH:mm" required>
 

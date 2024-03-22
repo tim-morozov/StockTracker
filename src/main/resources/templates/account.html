@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title th:text="#{stock.tracker}">StockTracker</title>
+    <title>StockTracker</title>
     <meta name="description" content="Stock trading website">
     <meta name="author" content="IFT401 Group 14">
     <link rel="stylesheet" href="./css/css.css">
 </head>
 <body>
-    <h1 th:text="#{stock.tracker}">StockTracker</h1>
+    <h1>StockTracker</h1>
     <p></p>
     <div class="div1">
         <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
@@ -39,7 +39,7 @@
                 <label for="username" class="title">Username:  </label>
             </div>
             <div class="divField">
-                <input type="text" id="username" name="username" maxlength="30" minlength="5" th:field="*{Username}"><br>
+                <input type="text" id="username" name="username" maxlength="30" minlength="5" th:field="*{userName}"><br>
             </div>
             <div class="divLabel">
                 <label for="password" class="title">Password:  </label>

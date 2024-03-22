@@ -27,6 +27,7 @@ public class HomeController {
     }
 
    private Iterable<Stock> GetStocks(){
+
         return  stockService.GetAllStocks();
    }
 

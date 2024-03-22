@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Users")
-public class User extends Object {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,7 +23,12 @@ public class User extends Object {
     private String LastName;
 
     @NotBlank
-    private String EmailAddress;
+    private String emailAddress;
+
+    @NotBlank
+    private String userName;
+    @NotBlank
+    private float Balance;
 
     @NotBlank
     private short UserType;
@@ -65,11 +70,11 @@ public class User extends Object {
     }
 
     public String getEmailAddress() {
-        return EmailAddress;
+        return emailAddress;
     }
 
     public void setEmailAddress(String emailAddress) {
-        EmailAddress = emailAddress;
+        emailAddress = emailAddress;
     }
 
     public short getUserType() {
@@ -110,6 +115,22 @@ public class User extends Object {
 
     public void setUpdateDate(Date updateDate) {
         UpdateDate = updateDate;
+    }
+
+    public String getuserName() {
+        return userName;
+    }
+
+    public void setuserName(String userName) {
+        this.userName = userName;
+    }
+
+    public float getBalance() {
+        return Balance;
+    }
+
+    public void setBalance(float balance) {
+        Balance = balance;
     }
 
 

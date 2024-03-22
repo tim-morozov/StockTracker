@@ -2,30 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title th:text="#{stock.tracker}">StockTracker - Manage Cash</title>
+    <title>StockTracker - Manage Cash</title>
     <meta name="description" content="Stock trading website">
     <meta name="author" content="IFT401 Group 14">
     <link rel="stylesheet" href="./css/css.css">
 </head>
 <body>
-    <h1 th:text="#{stock.tracker}">StockTracker</h1>
+    <h1>StockTracker</h1>
     <p></p>
     <div class="div1">
         <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
     </div>
-    <p th:text="#{user.functions}">User Functions</p>
+    <p >User Functions</p>
     
     <h2>Manage Cash</h2>
     
     <!-- Display current balance, needs backend to display -->
-    <p th:text="'Current Balance: $' + ${user.balance}"></p>
+    <p>Current Balance: [[${user.Balance}]] </p>
 
     <section>
         <h3>Deposit</h3>
         <form action="/processDeposit" method="post">
             <!-- needs backend to handle deposit -->
             <label for="depositAmount">Amount:</label>
-            <input type="number" id="depositAmount" name="depositAmount" min="1" required>
+            <input type="number" id="depositAmount" name="depositAmount" min="1" required th:field="newBalance">
             
             <!-- Add more if needed -->
             
