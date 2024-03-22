@@ -42,6 +42,18 @@ public class UserController {
         return mav;
     }
 
+    @PostMapping("/processWithdraw")
+    public ModelAndView ProcessWithdraw(@RequestParam("WithdrawBalance") float withdrawBalance, HttpSession session){
+        User user = (User)session.getAttribute("user");
+        var newBalance = user.getBalance() - withdrawBalance;
+        user.setBalance(newBalance);
+
+        userService.SaveUser(user);
+
+        ModelAndView mav = new ModelAndView("user");
+        return mav;
+    }
+
 
 
     @RequestMapping("/viewusertradinghistory")

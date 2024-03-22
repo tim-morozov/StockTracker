@@ -22,7 +22,7 @@
 
     <section>
         <h3>Deposit</h3>
-        <form action="/processDeposit" method="post">
+        <form action="user/processDeposit" method="post">
             <!-- needs backend to handle deposit -->
             <label for="depositAmount">Amount:</label>
             <input type="number" id="depositAmount" name="depositAmount" min="1" required th:field="newBalance">
