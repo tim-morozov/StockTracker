@@ -18,71 +18,76 @@
     <h2>Create New Stock</h2>
 
     <form th:action="@{/administrator/createstock}" method="post" th:object="${stock}">
-        <label for="companyName">Company Name:</label>
-        <input type="text" id="companyName" name="companyName" th:field="*{CompanyName}" required>
+        <div th:if="${session.user.UserType == 'ADMIN'}"></div>
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName" name="companyName" th:field="*{CompanyName}" required>
 
-        <label for="stockTicker">Stock Ticker:</label>
-        <input type="text" id="stockTicker" name="stockTicker" th:field="*{Ticker}" required>
+            <label for="stockTicker">Stock Ticker:</label>
+            <input type="text" id="stockTicker" name="stockTicker" th:field="*{Ticker}" required>
 
-        <label for="volume">Volume:</label>
-        <input type="number" id="volume" name="volume" th:field="*{Volume}" required>
+            <label for="volume">Volume:</label>
+            <input type="number" id="volume" name="volume" th:field="*{Volume}" required>
 
-        <label for="initialPrice">Initial Price:</label>
-        <input type="text" id="initialPrice" name="initialPrice" th:field="*{Price}" required>
+            <label for="initialPrice">Initial Price:</label>
+            <input type="text" id="initialPrice" name="initialPrice" th:field="*{Price}" required>
 
-        <button type="submit">Create Stock</button>
+            <button type="submit">Create Stock</button>
+        </div>
 
     </form>
 
     <h2>Change Market Hours</h2>
 
     <form action="/administrator/changemarkethours" method="post" th:object="${market}">
-        <label for="newMarketOpening">New Market Opening Time:</label>
-        <input type="time" id="newMarketOpening" name="newMarketOpening" placeholder="HH:mm" required>
+        <div th:if="${session.user.UserType == 'ADMIN'}"></div>
+            <label for="newMarketOpening">New Market Opening Time:</label>
+            <input type="time" id="newMarketOpening" name="newMarketOpening" placeholder="HH:mm" required>
 
-        <label for="newMarketClosing">New Market Closing Time:</label>
-        <input type="time" id="newMarketClosing" name="newMarketClosing" placeholder="HH:mm" required>
+            <label for="newMarketClosing">New Market Closing Time:</label>
+            <input type="time" id="newMarketClosing" name="newMarketClosing" placeholder="HH:mm" required>
 
-        <button type="submit">Change Market Hours</button>
+            <button type="submit">Change Market Hours</button>
+        </div>
     </form>
 
     <h2>Change Market Schedule</h2>
     <form action="/administrator/changemarketschedule" method="post">
-        <label>Days the Market is Open:</label><br>
-        <input type="checkbox" id="monday" name="days[]" value="Monday">
-        <label for="monday">Monday</label><br>
-        <input type="checkbox" id="tuesday" name="days[]" value="Tuesday">
-        <label for="tuesday">Tuesday</label><br>
-        <input type="checkbox" id="wednesday" name="days[]" value="Wednesday">
-        <label for="wednesday">Wednesday</label><br>
-        <input type="checkbox" id="thursday" name="days[]" value="Thursday">
-        <label for="thursday">Thursday</label><br>
-        <input type="checkbox" id="friday" name="days[]" value="Friday">
-        <label for="friday">Friday</label><br>
-        <input type="checkbox" id="saturday" name="days[]" value="Saturday">
-        <label for="saturday">Saturday</label><br>
-        <input type="checkbox" id="sunday" name="days[]" value="Sunday">
-        <label for="sunday">Sunday</label><br>
-    <!-- Still looking into this holiday option thing -->
-        <label for="holiday">Select Holiday:</label>
-        <select id="holiday" name="holiday">
-            <option value="">-- Select Holiday --</option>
-            <option value="New Year's Day">New Year's Day</option>
-            <option value="Martin Luther King Jr. Day">Martin Luther King Jr. Day</option>
-            <option value="Presidents Day">Presidents Day</option>
-            <option value="Good Friday">Good Friday</option>
-            <option value="Memorial Day">Memorial Day</option>
-            <option value="Independence Day">Independence Day</option>
-            <option value="Labor Day">Labor Day</option>
-            <option value="Thanksgiving Day">Thanksgiving Day</option>
-            <option value="Christmas Day">Christmas Day</option>
-            <!-- Add more holidays as needed -->
-        </select><br>
+        <div th:if="${session.user.UserType == 'ADMIN'}"></div>
+            <label>Days the Market is Open:</label><br>
+            <input type="checkbox" id="monday" name="days[]" value="Monday">
+            <label for="monday">Monday</label><br>
+            <input type="checkbox" id="tuesday" name="days[]" value="Tuesday">
+            <label for="tuesday">Tuesday</label><br>
+            <input type="checkbox" id="wednesday" name="days[]" value="Wednesday">
+            <label for="wednesday">Wednesday</label><br>
+            <input type="checkbox" id="thursday" name="days[]" value="Thursday">
+            <label for="thursday">Thursday</label><br>
+            <input type="checkbox" id="friday" name="days[]" value="Friday">
+            <label for="friday">Friday</label><br>
+            <input type="checkbox" id="saturday" name="days[]" value="Saturday">
+            <label for="saturday">Saturday</label><br>
+            <input type="checkbox" id="sunday" name="days[]" value="Sunday">
+            <label for="sunday">Sunday</label><br>
+            <!-- Still looking into this holiday option thing -->
+            <label for="holiday">Select Holiday:</label>
+            <select id="holiday" name="holiday">
+                <option value="">-- Select Holiday --</option>
+                <option value="New Year's Day">New Year's Day</option>
+                <option value="Martin Luther King Jr. Day">Martin Luther King Jr. Day</option>
+                <option value="Presidents Day">Presidents Day</option>
+                <option value="Good Friday">Good Friday</option>
+                <option value="Memorial Day">Memorial Day</option>
+                <option value="Independence Day">Independence Day</option>
+                <option value="Labor Day">Labor Day</option>
+                <option value="Thanksgiving Day">Thanksgiving Day</option>
+                <option value="Christmas Day">Christmas Day</option>
+                <!-- Add more holidays as needed -->
+            </select><br>
     
-        <button type="submit">Change Market Schedule</button> 
+            <button type="submit">Change Market Schedule</button>
+        </div> 
     </form>
 
 
 </body>
 </html>
-
