@@ -13,7 +13,6 @@
     <div class="div1">
         <a th:href="@{/stocks}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
     </div>
-<<<<<<< HEAD
     <p>Administrator Functions</p>
 
     <h2>Create New Stock</h2>
@@ -80,24 +79,9 @@
             <!-- Add more holidays as needed -->
         </select><br>
     
-        <button type="submit">Change Market Schedule</button>
->>>>>>> 1eaf19b78678f33e0c5b9de0213494e779ab15e2
+        <button type="submit">Change Market Schedule</button> 
     </form>
 
-    <h2>Change Market Hours</h2>
-
-    <form action="/administrator/changemarkethours" method="post">
-        <label for="newMarketOpening">New Market Opening Time:</label>
-        <input type="time" id="newMarketOpening" name="newMarketOpening" placeholder="HH:mm" required>
-
-        <label for="newMarketClosing">New Market Closing Time:</label>
-        <input type="time" id="newMarketClosing" name="newMarketClosing" placeholder="HH:mm" required>
-
-        <button type="submit">Change Market Hours</button>
-    </form>
-
-    <h2>Change Market Schedule</h2>
-    <!-- not sure how im gonna work this one yet -->
 
 </body>
 </html>
