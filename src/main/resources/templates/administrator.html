@@ -13,24 +13,26 @@
     <div class="div1">
         <a th:href="@{/stocks}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
     </div>
+<<<<<<< HEAD
     <p>Administrator Functions</p>
 
     <h2>Create New Stock</h2>
 
-    <form th:action="@{/administrator/createstock}" method="post">
+    <form th:action="@{/administrator/createstock}" method="post" th:object="${stock}">
         <label for="companyName">Company Name:</label>
-        <input type="text" id="companyName" name="companyName" required>
+        <input type="text" id="companyName" name="companyName" th:field="*{CompanyName}" required>
 
         <label for="stockTicker">Stock Ticker:</label>
-        <input type="text" id="stockTicker" name="stockTicker" required>
+        <input type="text" id="stockTicker" name="stockTicker" th:field="*{Ticker}" required>
 
         <label for="volume">Volume:</label>
-        <input type="number" id="volume" name="volume" required>
+        <input type="number" id="volume" name="volume" th:field="*{Volume}" required>
 
         <label for="initialPrice">Initial Price:</label>
-        <input type="text" id="initialPrice" name="initialPrice" required>
+        <input type="text" id="initialPrice" name="initialPrice" th:field="*{Price}" required>
 
         <button type="submit">Create Stock</button>
+
     </form>
 
     <h2>Change Market Hours</h2>
@@ -79,7 +81,27 @@
         </select><br>
     
         <button type="submit">Change Market Schedule</button>
+>>>>>>> 1eaf19b78678f33e0c5b9de0213494e779ab15e2
     </form>
+<<<<<<< HEAD
+
+    <h2>Change Market Hours</h2>
+
+    <form action="/administrator/changemarkethours" method="post">
+        <label for="newMarketOpening">New Market Opening Time:</label>
+        <input type="time" id="newMarketOpening" name="newMarketOpening" placeholder="HH:mm" required>
+
+        <label for="newMarketClosing">New Market Closing Time:</label>
+        <input type="time" id="newMarketClosing" name="newMarketClosing" placeholder="HH:mm" required>
+
+        <button type="submit">Change Market Hours</button>
+    </form>
+
+    <h2>Change Market Schedule</h2>
+    <!-- not sure how im gonna work this one yet -->
+
+=======
+>>>>>>> 1eaf19b78678f33e0c5b9de0213494e779ab15e2
 </body>
 </html>
 
