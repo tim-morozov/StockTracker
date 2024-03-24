@@ -60,3 +60,13 @@ div{
   size: 30px;
 
 }
+.toggle-password {
+  cursor: pointer;
+  background-color: lightgray;
+  padding: 3px 5px;
+  border: none;
+}
+#stockTable {
+  margin: 0 auto;
+  width: 80%;
+}
