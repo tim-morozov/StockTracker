@@ -48,10 +48,11 @@ public class LoginController {
 
     private boolean ValidateLogin(LoginViewModel login){
         User validUser = userService.GetUserByUserName(login.getUserName());
-        var passToAuthenticate = passwordEncoder.encode(login.getPassword());
+        var result = passwordEncoder.matches(login.getPassword(), validUser.getPassword());
+
         if (validUser == null){
            return  false;
-        } else if (!validUser.getPassword().equals(passToAuthenticate)) {
+        } else if (!result) {
             return false;
         } else {
             return true;
