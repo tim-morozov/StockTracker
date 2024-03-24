@@ -32,7 +32,7 @@ public class LoginController {
     }
 
    @PostMapping("/login")
-    public ModelAndView LoginUser(@ModelAttribute("Login") LoginViewModel login, BindingResult result, HttpSession session){
+    public ModelAndView LoginUser(@ModelAttribute("Login") LoginViewModel login, HttpSession session){
         if(ValidateLogin(login)){
             var user = userService.GetUserByUserName(login.getUserName());
             session.setAttribute("user", user);
@@ -52,11 +52,7 @@ public class LoginController {
 
         if (validUser == null){
            return  false;
-        } else if (!result) {
-            return false;
-        } else {
-            return true;
-        }
+        } else return result;
     }
 
 
