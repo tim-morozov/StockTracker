@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Repository
 public interface UserRepository extends CrudRepository<User, Serializable> {
 
-    User findById(short id);
+    User findById(long id);
 
     @Query("select u from users u where u.EmailAddress = :emailaddress")
     User findUserByEmailAddress(@Param("emailaddress") String EmailAddress);
