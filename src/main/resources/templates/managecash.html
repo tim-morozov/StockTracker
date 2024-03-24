@@ -11,21 +11,21 @@
     <h1>StockTracker</h1>
     <p></p>
     <div class="div1">
-        <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
+        <a th:href="@{/index}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:if="${session.user.userType == 1}" th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
     </div>
     <p >User Functions</p>
     
     <h2>Manage Cash</h2>
     
     <!-- Display current balance, needs backend to display -->
-    <p>Current Balance: [[${user.Balance}]] </p>
+    <p>Current Balance: [[${#numbers.formatDecimal(session.user.balance, 1, 'DEFAULT', 2, 'DEFAULT')}]] </p>
 
     <section>
         <h3>Deposit</h3>
-        <form action="user/processDeposit" method="post">
+        <form th:action="@{/user/processDeposit}" method="post">
             <!-- needs backend to handle deposit -->
             <label for="depositAmount">Amount:</label>
-            <input type="number" id="depositAmount" name="depositAmount" min="1" required th:field="newBalance">
+            <input type="number" id="depositAmount" name="depositAmount" min="1" required th:name="newBalance">
             
             <!-- Add more if needed -->
             
@@ -35,10 +35,10 @@
     
     <section>
         <h3>Withdraw</h3>
-        <form action="/processWithdraw" method="post">
+        <form th:action="@{/user/processWithdraw}" method="post">
             <!-- needs backend to handle withdraw -->
             <label for="withdrawAmount">Amount:</label>
-            <input type="number" id="withdrawAmount" name="withdrawAmount" min="1" required>
+            <input type="number" id="withdrawAmount" name="withdrawAmount" min="1" required th:name="withdrawBalance">
             
             <!-- Add more if needed -->
             
