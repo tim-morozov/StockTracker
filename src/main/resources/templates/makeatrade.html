@@ -16,15 +16,15 @@
     <p>User Functions</p>
     <p>Make a Trade</p>
     
-    <form th:action="@{account/makeTrade}" method="post">
+    <form th:action="@{user/makeTrade}" method="post" th:object="${trade}">
         <label for="stockTicker">Stock Ticker:</label>
-        <input type="text" id="stockTicker" name="stockTicker" required>
+        <input type="text" id="stockTicker" name="stockTicker" required th:field="*{ticker}">
 
         <label for="numberOfShares">Number of Shares:</label>
-        <input type="number" id="numberOfShares" name="numberOfShares" required>
+        <input type="number" id="numberOfShares" name="numberOfShares" required th:field="*{amount}">
 
         <label for="tradeType">Trade Type:</label>
-        <select id="tradeType" name="tradeType" required>
+        <select id="tradeType" name="tradeType" required th:field="*{option}">
             <option value="buy">Buy</option>
             <option value="sell">Sell</option>
         </select>

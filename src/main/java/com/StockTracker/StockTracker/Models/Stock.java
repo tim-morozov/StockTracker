@@ -20,7 +20,7 @@ public class Stock extends Object {
     private String CompanyName;
 
     @NotBlank
-    private String Ticker;
+    private String ticker;
 
     @NotBlank
     private double Price;
@@ -51,12 +51,12 @@ public class Stock extends Object {
 
     public String getTicker() {
 
-        return Ticker;
+        return ticker;
     }
 
     public void setTicker(String ticker) {
 
-        Ticker = ticker;
+        ticker = ticker;
     }
 
     public double getPrice() {

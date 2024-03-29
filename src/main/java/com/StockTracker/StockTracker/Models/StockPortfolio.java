@@ -11,11 +11,9 @@ public class StockPortfolio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long UserPortfolioId;
 
-    @NotBlank
-    private int UserId;
+    private @NotBlank long userId;
 
-    @NotBlank
-    private int StockId;
+    private @NotBlank long stockId;
 
     @NotBlank
     private int Amount;
@@ -30,20 +28,20 @@ public class StockPortfolio {
         UserPortfolioId = userPortfolioId;
     }
 
-    public int getUserId() {
-        return UserId;
+    public @NotBlank long getUserId() {
+        return userId;
     }
 
-    public void setUserId(int userId) {
-        UserId = userId;
+    public void setUserId(long UserId) {
+        userId = UserId;
     }
 
-    public int getStockId() {
-        return StockId;
+    public @NotBlank long getStockId() {
+        return stockId;
     }
 
-    public void setStockId(int stockId) {
-        StockId = stockId;
+    public void setStockId(long StockId) {
+        stockId = StockId;
     }
 
     public int getAmount() {

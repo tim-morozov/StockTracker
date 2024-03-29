@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface StockRepository extends CrudRepository<Stock, Event.ID> {
     List<Stock> findAll();
+
+    Stock findByTicker(String ticker);
 }

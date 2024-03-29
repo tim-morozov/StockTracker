@@ -18,7 +18,13 @@ public class StockService {
         return stockRepository.findAll();
     }
 
+    public Stock GetByTicker(String ticker){
+       return stockRepository.findByTicker(ticker);
+    }
+
     public void SaveStock(Stock stock){
+
         stockRepository.save(stock);
     }
+
 }

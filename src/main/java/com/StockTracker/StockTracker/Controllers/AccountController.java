@@ -1,7 +1,12 @@
 package com.StockTracker.StockTracker.Controllers;
 
+import com.StockTracker.StockTracker.Models.StockPortfolio;
 import com.StockTracker.StockTracker.Models.User;
+import com.StockTracker.StockTracker.Models.ViewModels.TradeViewModel;
+import com.StockTracker.StockTracker.Service.StockPortfolioService;
+import com.StockTracker.StockTracker.Service.StockService;
 import com.StockTracker.StockTracker.Service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,6 +30,7 @@ public class AccountController {
     PasswordEncoder passwordEncoder;
 
 
+
     @RequestMapping()
     public ModelAndView Account(){
         ModelAndView mav = new ModelAndView("account");
@@ -44,5 +50,6 @@ public class AccountController {
         return "redirect:/index";
 
     }
+
 
 }
