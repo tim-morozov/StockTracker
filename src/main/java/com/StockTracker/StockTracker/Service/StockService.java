@@ -18,6 +18,10 @@ public class StockService {
         return stockRepository.findAll();
     }
 
+    public Stock GetById(long stockId){
+        return stockRepository.findByStockId(stockId);
+    }
+
     public Stock GetByTicker(String ticker){
        return stockRepository.findByTicker(ticker);
     }

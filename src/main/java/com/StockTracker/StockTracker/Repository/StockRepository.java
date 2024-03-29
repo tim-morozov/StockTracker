@@ -11,5 +11,6 @@ import java.util.List;
 public interface StockRepository extends CrudRepository<Stock, Event.ID> {
     List<Stock> findAll();
 
+    Stock findByStockId(long stockId);
     Stock findByTicker(String ticker);
 }

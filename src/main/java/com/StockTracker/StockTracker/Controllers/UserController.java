@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 
@@ -47,7 +48,7 @@ public class UserController {
     @PostMapping("/processDeposit")
     public ModelAndView ProcessDeposit(@RequestParam("newBalance") Float newBalance, HttpSession session){
         User user = (User)session.getAttribute("user");
-        var oldBalance = user.getBalance();
+        @NotBlank double oldBalance = user.getBalance();
         user.setBalance(oldBalance + newBalance);
         userService.SaveUser(user);
 
@@ -57,7 +58,7 @@ public class UserController {
     @PostMapping("/processWithdraw")
     public ModelAndView ProcessWithdraw(@RequestParam("withdrawBalance") float withdrawBalance, HttpSession session){
         User user = (User)session.getAttribute("user");
-        var newBalance = user.getBalance() - withdrawBalance;
+        double newBalance = user.getBalance() - withdrawBalance;
         user.setBalance(newBalance);
 
         userService.SaveUser(user);
@@ -103,20 +104,20 @@ public class UserController {
             stockPortfolio.setAmount(trade.getAmount());
             stockPortfolio.setUpdateDate(new Date());
 
-            stockPortfolioService.BuyStock(stockPortfolio);
+            stockPortfolioService.BuyStock(stockPortfolio, user.getId(), trade.getAmount());
             tradeHistoryService.SaveTransaction(tradeHistory);
         } else {
             if (trade.getOption().equals("buy")) {
                 var newAmount = currentStock.getAmount() + trade.getAmount();
                 currentStock.setAmount(newAmount);
 
-                stockPortfolioService.BuyStock(currentStock);
+                stockPortfolioService.BuyStock(currentStock,user.getId(), trade.getAmount());
                 tradeHistoryService.SaveTransaction(tradeHistory);
             } else{
                 var newAmount = currentStock.getAmount() - trade.getAmount();
                 currentStock.setAmount(newAmount);
 
-                stockPortfolioService.SellStock(currentStock);
+                stockPortfolioService.SellStock(currentStock, user.getId(), trade.getAmount());
                 tradeHistoryService.SaveTransaction(tradeHistory);
             }
         }

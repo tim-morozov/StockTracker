@@ -13,7 +13,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User GetUser(short id){
+    public User GetUser(long id){
         var user = userRepository.findById(id);
 
         return (User) user;

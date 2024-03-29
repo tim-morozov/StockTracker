@@ -1,10 +1,7 @@
 package com.StockTracker.StockTracker.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
@@ -27,8 +24,7 @@ public class User {
 
     @NotBlank
     private String userName;
-    @NotBlank
-    private float Balance;
+    private @NotBlank double Balance;
 
     @NotBlank
     private short UserType;
@@ -125,11 +121,11 @@ public class User {
         this.userName = userName;
     }
 
-    public float getBalance() {
+    public @NotBlank double getBalance() {
         return Balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(double balance) {
         Balance = balance;
     }
 
