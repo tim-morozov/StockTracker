@@ -1,15 +1,17 @@
 package com.StockTracker.StockTracker.Controllers;
 
 import com.StockTracker.StockTracker.Models.StockPortfolio;
+import com.StockTracker.StockTracker.Models.TradeHistory;
 import com.StockTracker.StockTracker.Models.User;
 import com.StockTracker.StockTracker.Models.ViewModels.TradeViewModel;
 import com.StockTracker.StockTracker.Service.StockPortfolioService;
 import com.StockTracker.StockTracker.Service.StockService;
+import com.StockTracker.StockTracker.Service.TradeHistoryService;
 import com.StockTracker.StockTracker.Service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,8 @@ public class UserController {
     StockPortfolioService stockPortfolioService;
     @Autowired
     StockService stockService;
+    @Autowired
+    TradeHistoryService tradeHistoryService;
 
 
     @RequestMapping()
@@ -65,6 +69,7 @@ public class UserController {
 
     @RequestMapping("/viewusertradinghistory")
     public ModelAndView ViewUserTradingHistory(){
+
         return new ModelAndView("viewusertradinghistory");
     }
 
@@ -79,8 +84,16 @@ public class UserController {
     @PostMapping("user/makeTrade")
     public String MakeTrade(@ModelAttribute("Trade")TradeViewModel trade, HttpSession session){
 
-        var stockId = stockService.GetByTicker(trade.getTicker()).getStockId();
+
         User user = (User) session.getAttribute("user");
+        TradeHistory tradeHistory = new TradeHistory();
+        tradeHistory.setUserId(user.getId());
+        tradeHistory.setTicker(trade.getTicker());
+        tradeHistory.setAmount(trade.getAmount());
+        tradeHistory.setType(trade.getOption());
+        tradeHistory.setTransactionDate(new Date());
+
+        var stockId = stockService.GetByTicker(trade.getTicker()).getStockId();
 
         var currentStock = stockPortfolioService.GetByStockIdAndUserId((int)stockId, (int)user.getId());
         if (currentStock == null && trade.getOption().equals("buy")){
@@ -91,21 +104,24 @@ public class UserController {
             stockPortfolio.setUpdateDate(new Date());
 
             stockPortfolioService.BuyStock(stockPortfolio);
+            tradeHistoryService.SaveTransaction(tradeHistory);
         } else {
             if (trade.getOption().equals("buy")) {
                 var newAmount = currentStock.getAmount() + trade.getAmount();
                 currentStock.setAmount(newAmount);
 
                 stockPortfolioService.BuyStock(currentStock);
+                tradeHistoryService.SaveTransaction(tradeHistory);
             } else{
                 var newAmount = currentStock.getAmount() - trade.getAmount();
                 currentStock.setAmount(newAmount);
 
                 stockPortfolioService.SellStock(currentStock);
+                tradeHistoryService.SaveTransaction(tradeHistory);
             }
         }
 
-        return "user";
+        return "redirect:/user";
 
     }
 

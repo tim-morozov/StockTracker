@@ -31,4 +31,6 @@ public class HomeController {
         return  stockService.GetAllStocks();
    }
 
+
+
 }
