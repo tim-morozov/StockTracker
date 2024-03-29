@@ -74,7 +74,7 @@ public class User {
     }
 
     public void setEmailAddress(String emailAddress) {
-        emailAddress = emailAddress;
+        this.emailAddress = emailAddress;
     }
 
     public short getUserType() {
