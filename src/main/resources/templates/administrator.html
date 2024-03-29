@@ -11,7 +11,7 @@
     <h1>StockTracker</h1>
     <p></p>
     <div class="div1">
-        <a th:href="@{/stocks}">Stocks</a> | <a th:href="@{/user}">User</a> | <a th:href="@{/administrator}">Administrator</a> | <a th:href="@{/account}">Account</a>
+        <a th:href="@{/index}">Stocks</a> | <span th:if="${!#ctx.session.isEmpty()}"><a  th:href="@{/user}">User</a> | </span> <span th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}"><a th:href="@{/administrator}">Administrator</a> | </span> <a th:href="@{/account}">Account</a>
     </div>
     <p>Administrator Functions</p>
 
@@ -38,7 +38,7 @@
 
     <h2>Change Market Hours</h2>
 
-    <form action="/administrator/changemarkethours" method="post" th:object="${market}">
+    <form th:action="@{/administrator/changemarkethours}" method="post" th:object="${market}">
         <div th:if="${session.user.UserType == 'ADMIN'}"></div>
             <label for="newMarketOpening">New Market Opening Time:</label>
             <input type="time" id="newMarketOpening" name="newMarketOpening" placeholder="HH:mm" required>
