@@ -28,8 +28,18 @@
             <option value="buy">Buy</option>
             <option value="sell">Sell</option>
         </select>
+        <p></p>
 
-        <button type="submit">Submit Trade</button>
+        <button type="submit" onclick="confirmTrade()">Submit Trade</button>
     </form>
+    <script>
+        function confirmTrade() {
+            var result = confirm("Are you sure you want to make this trade?");
+            // If user confirms, submit the form
+            if (result) {
+                document.getElementById("tradeForm").submit();
+            }
+        }
+    </script>
 </body>
-</html>
+</html
