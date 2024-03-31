@@ -14,7 +14,33 @@
         <a th:href="@{/index}">Stocks</a> | <span th:if="${!#ctx.session.isEmpty()}"><a  th:href="@{/user}">User</a> | </span> <span th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}"><a th:href="@{/administrator}">Administrator</a> | </span> <a th:href="@{/account}">Account</a>
     </div>
     <p>User Functions</p>
-    <p>View Trading History Page Content</p>
-    <!-- Add content for viewing trading history here -->
+    <p>View Trading History</p>
+    
+    <!-- Display the trade history if available -->
+    <table id="tradeHistory">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Stock</th>
+                <th>Quantity</th> 
+                <th>Price</th>
+                <th>Type</th>
+                <!-- more? -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="trade : ${tradeHistory}">
+                <td th:text="${trade.transactionDate}"></td>
+                <td th:text="${trade.ticker}"></td>
+                <td th:text="${trade.amount}"></td><!--This is # of stock-->
+                <td th:text="${trade.amount}"></td><!--this is price-->
+                <td th:text="${trade.type}"></td>
+                <!-- not sure if amount is price or quanity, either way they both should be there -->
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Display a message if no trade history is available -->
+    <p th:if="${tradeHistory == null || tradeHistory.isEmpty()}">No trade history found for this user.</p>
 </body>
 </html>
