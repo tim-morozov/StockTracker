@@ -99,6 +99,7 @@ div {
    /* Centered horizontally */
 	width: 100%;
    /* Adjusted width to fill parent container */
+	text-align: center;
 }
 #tradeHistory {
 	margin: 0 auto;
