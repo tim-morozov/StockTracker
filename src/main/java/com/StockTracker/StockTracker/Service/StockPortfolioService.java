@@ -1,9 +1,12 @@
 package com.StockTracker.StockTracker.Service;
 
+import com.StockTracker.StockTracker.Models.Stock;
 import com.StockTracker.StockTracker.Models.StockPortfolio;
 import com.StockTracker.StockTracker.Repository.StockPortfolioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class StockPortfolioService {
@@ -16,6 +19,10 @@ public class StockPortfolioService {
 
     public StockPortfolio GetByStockIdAndUserId(int stockId, int userId){
         return stockPortfolioRepository.findByStockIdAndUserId(stockId, userId);
+    }
+
+    public List<StockPortfolio> GetUserPortfolio(long userId){
+        return stockPortfolioRepository.findByUserId(userId);
     }
 
     public void SellStock(StockPortfolio stockPortfolio, long userId, int amount){

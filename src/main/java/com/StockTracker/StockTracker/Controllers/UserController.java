@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -36,8 +37,13 @@ public class UserController {
 
 
     @RequestMapping()
-    public ModelAndView User() {
-        return new ModelAndView("user");
+    public ModelAndView User(HttpSession session) {
+        User user = (User)session.getAttribute("user");
+
+        List<StockPortfolio> portfolio = stockPortfolioService.GetUserPortfolio(user.getId());
+        ModelAndView mav = new ModelAndView("user");
+        mav.addObject("portfolio", portfolio);
+        return mav;
     }
 
     @RequestMapping("/managecash")
