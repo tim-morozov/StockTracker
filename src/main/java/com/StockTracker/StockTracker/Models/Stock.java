@@ -9,11 +9,11 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-public class Stock extends Object {
+public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long StockId;
+    private long stockId;
 
 
     @NotBlank
@@ -28,16 +28,21 @@ public class Stock extends Object {
     @NotBlank
     private double Volume;
 
+    private double high;
+    private double low;
+
+
+
     private Date UpdateDate;
 
     public long getStockId() {
 
-        return StockId;
+        return stockId;
     }
 
     public void setStockId(long stockId) {
 
-        StockId = stockId;
+        this.stockId = stockId;
     }
 
     public String getCompanyName() {
@@ -77,6 +82,22 @@ public class Stock extends Object {
     public void setVolume(double volume) {
 
         Volume = volume;
+    }
+
+    public double getHigh() {
+        return high;
+    }
+
+    public void setHigh(double high) {
+        this.high = high;
+    }
+
+    public double getLow() {
+        return low;
+    }
+
+    public void setLow(double low) {
+        this.low = low;
     }
 
     public Date getUpdateDate() {
