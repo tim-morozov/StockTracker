@@ -77,6 +77,11 @@ div {
 	width: 100%; /* Adjusted width to fill parent container */
 }
 
+#userPortfolio {
+	margin: 0 auto; /* Centered horizontally */
+	width: 100%; /* Adjusted width to fill parent container */
+}
+
 /* Forms */
 form {
   width: 50%; /* Set width to 50% */
