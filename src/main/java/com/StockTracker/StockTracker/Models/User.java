@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -39,6 +40,7 @@ public class User {
     private Date CreateDate;
 
     private Date UpdateDate;
+
 
     public long getId() {
         return id;
@@ -128,6 +130,5 @@ public class User {
     public void setBalance(double balance) {
         Balance = balance;
     }
-
 
 }

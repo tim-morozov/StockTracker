@@ -1,18 +1,17 @@
 package com.StockTracker.StockTracker.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="stock_id")
     private long stockId;
 
 
@@ -30,6 +29,11 @@ public class Stock {
 
     private double high;
     private double low;
+
+    @OneToMany()
+    @JoinColumn(name = "stock_id")
+    private List<StockPortfolio> stockPortfolio;
+
 
 
 
@@ -108,5 +112,13 @@ public class Stock {
     public void setUpdateDate(Date updateDate) {
 
         UpdateDate = updateDate;
+    }
+
+    public List<StockPortfolio> getStockPortfolio() {
+        return stockPortfolio;
+    }
+
+    public void setStockPortfolio(List<StockPortfolio> stockPortfolio) {
+        this.stockPortfolio = stockPortfolio;
     }
 }

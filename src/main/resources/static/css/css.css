@@ -112,6 +112,7 @@ div {
    /* Centered horizontally */
 	width: 100%;
    /* Adjusted width to fill parent container */
+	text-align: center;
 }
 /* Forms */
 form {
@@ -150,3 +151,5 @@ button[type="submit"] {
 button[type="submit"]:hover {
 	background-color: #0056b3;
 }
+
+

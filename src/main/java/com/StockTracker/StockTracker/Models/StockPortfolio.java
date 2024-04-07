@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class StockPortfolio {
@@ -13,6 +14,7 @@ public class StockPortfolio {
 
     private @NotBlank long userId;
 
+    @Column(name="stock_id")
     private @NotBlank long stockId;
 
     @NotBlank
@@ -40,6 +42,10 @@ public class StockPortfolio {
         return stockId;
     }
 
+    @ManyToOne()
+    @JoinColumn(name = "stockid")
+    private Stock stock;
+
     public void setStockId(long StockId) {
         stockId = StockId;
     }
@@ -59,4 +65,12 @@ public class StockPortfolio {
     public void setUpdateDate(Date updateDate) {
         UpdateDate = updateDate;
     }
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
 }
