@@ -51,7 +51,10 @@ public class UserController {
         portfolio.forEach(p -> p.setStock(stockService.GetById(p.getStockId())));
 
         var portfolioList = portfolio.stream()
-                .map( p -> new StockPortfolioViewModel(p.getStock().getTicker(), p.getAmount(), p.getStock().getPrice()))
+                .map( p -> new StockPortfolioViewModel(
+                        p.getStock().getTicker(),
+                        p.getAmount(),
+                        RoundingHelper.round(p.getStock().getPrice(), 2)))
                 .collect(Collectors.toList());
         ModelAndView mav = new ModelAndView("user");
         mav.addObject("portfolio", portfolioList);
