@@ -32,15 +32,14 @@ public class LoginController {
     }
 
    @PostMapping("/login")
-    public ModelAndView LoginUser(@ModelAttribute("Login") LoginViewModel login, HttpSession session){
+    public String LoginUser(@ModelAttribute("Login") LoginViewModel login, HttpSession session){
         if(ValidateLogin(login)){
             var user = userService.GetUserByUserName(login.getUserName());
             session.setAttribute("user", user);
-            ModelAndView mav = new ModelAndView("user");
-            mav.addObject("user");
-            return mav;
+
+            return "redirect:/user";
         } else {
-            return new ModelAndView("index");
+            return "index";
        }
 
 
