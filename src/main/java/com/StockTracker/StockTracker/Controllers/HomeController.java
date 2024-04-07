@@ -1,5 +1,6 @@
 package com.StockTracker.StockTracker.Controllers;
 
+import com.StockTracker.StockTracker.Helpers.RoundingHelper;
 import com.StockTracker.StockTracker.Models.Stock;
 import com.StockTracker.StockTracker.Models.ViewModels.StockDataViewModel;
 import com.StockTracker.StockTracker.Service.StockService;
@@ -41,10 +42,10 @@ public class HomeController {
         List<StockDataViewModel> stockDataList = stockList.stream()
                .map(s -> new StockDataViewModel(s.getTicker(),
                        Math.floor(s.getPrice()),
-                       round(s.getPrice(), 2),
+                       RoundingHelper.round(s.getPrice(), 2),
                        s.getVolume(),
-                       round(s.getHigh(), 2),
-                       round(s.getLow(), 2))
+                       RoundingHelper.round(s.getHigh(), 2),
+                       RoundingHelper.round(s.getLow(), 2))
                        )
                .collect(Collectors.toList());
        return stockDataList;
@@ -54,14 +55,6 @@ public class HomeController {
 
         return  stockService.GetAllStocks();
    }
-
-    private static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
-    }
 
 
 
