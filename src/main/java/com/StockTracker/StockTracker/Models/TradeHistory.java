@@ -18,6 +18,8 @@ public class TradeHistory {
     @NotNull
     private long amount;
     @NotNull
+    private double price;
+    @NotNull
     private String type;
     @NotNull
     private Date transactionDate;
@@ -52,6 +54,14 @@ public class TradeHistory {
 
     public void setAmount(long amount) {
         this.amount = amount;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getType() {

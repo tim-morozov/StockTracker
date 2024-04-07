@@ -1,5 +1,6 @@
 package com.StockTracker.StockTracker.Controllers;
 
+import com.StockTracker.StockTracker.Helpers.RoundingHelper;
 import com.StockTracker.StockTracker.Models.Stock;
 import com.StockTracker.StockTracker.Models.StockPortfolio;
 import com.StockTracker.StockTracker.Models.TradeHistory;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,9 +87,14 @@ public class UserController {
 
 
     @RequestMapping("/viewusertradinghistory")
-    public ModelAndView ViewUserTradingHistory(){
+    public ModelAndView ViewUserTradingHistory(HttpSession session){
+        User user = (User) session.getAttribute("user");
 
-        return new ModelAndView("viewusertradinghistory");
+        List<TradeHistory> tradeHistory = tradeHistoryService.GetTradeHistoryByUser(user.getId());
+        tradeHistory.forEach(t -> t.setPrice(RoundingHelper.round(t.getPrice(), 2)));
+        ModelAndView mav = new ModelAndView("viewusertradinghistory");
+        mav.addObject("tradeHistory", tradeHistory);
+        return mav;
     }
 
     @RequestMapping("/makeatrade")
@@ -100,16 +108,17 @@ public class UserController {
     @PostMapping("user/makeTrade")
     public String MakeTrade(@ModelAttribute("Trade")TradeViewModel trade, HttpSession session){
 
+        var stock = stockService.GetByTicker(trade.getTicker());
+        var stockId = stock.getStockId();
 
         User user = (User) session.getAttribute("user");
         TradeHistory tradeHistory = new TradeHistory();
         tradeHistory.setUserId(user.getId());
         tradeHistory.setTicker(trade.getTicker());
         tradeHistory.setAmount(trade.getAmount());
+        tradeHistory.setPrice(stock.getPrice());
         tradeHistory.setType(trade.getOption());
         tradeHistory.setTransactionDate(new Date());
-
-        var stockId = stockService.GetByTicker(trade.getTicker()).getStockId();
 
         var currentStock = stockPortfolioService.GetByStockIdAndUserId((int)stockId, (int)user.getId());
         if (currentStock == null && trade.getOption().equals("buy")){
