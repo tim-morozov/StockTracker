@@ -42,6 +42,7 @@
                     data.forEach(stock => {
                         const row = document.createElement('tr');
                         const marketCap = stock.price * stock.volume;
+                        const priceClass = stock.price > stock.openingPrice ? 'green' : 'red';
                         row.innerHTML = `
                             <td>${stock.ticker}</td>
                             <td>${stock.price}</td>
