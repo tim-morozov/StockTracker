@@ -153,4 +153,13 @@ button[type="submit"]:hover {
 	background-color: #0056b3;
 }
 
+ /* Display for stock price */
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
+
 
