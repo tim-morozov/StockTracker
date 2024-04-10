@@ -11,6 +11,10 @@ public class MarketService {
     @Autowired
     private MarketRepository marketRepository;
 
+    public Market GetMarketTime(){
+        return marketRepository.findFirst1ByOrderByMarketIdAsc();
+    }
+
     public void SaveMarket(Market market){
         marketRepository.save(market);
     }
