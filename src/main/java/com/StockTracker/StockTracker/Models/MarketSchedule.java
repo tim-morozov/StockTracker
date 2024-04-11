@@ -3,6 +3,7 @@ package com.StockTracker.StockTracker.Models;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Time;
 import java.util.Date;
 
@@ -11,14 +12,11 @@ public class MarketSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long MarketScheduleId;
-    @NotBlank
-    private Time MarketOpen;
-    @NotBlank
-    private Time MarketClose;
-    @NotBlank
-    private Date ScheduleStart;
-    @NotBlank
-    private Date ScheduleEnd;
+    @NotNull
+    private String day;
+    @NotNull
+    private short isOpen;
+
 
     public long getMarketScheduleId() {
         return MarketScheduleId;
@@ -28,35 +26,19 @@ public class MarketSchedule {
         MarketScheduleId = marketScheduleId;
     }
 
-    public Time getMarketOpen() {
-        return MarketOpen;
+    public String getDay() {
+        return day;
     }
 
-    public void setMarketOpen(Time marketOpen) {
-        MarketOpen = marketOpen;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public Time getMarketClose() {
-        return MarketClose;
+    public short getIsOpen() {
+        return isOpen;
     }
 
-    public void setMarketClose(Time marketClose) {
-        MarketClose = marketClose;
-    }
-
-    public Date getScheduleStart() {
-        return ScheduleStart;
-    }
-
-    public void setScheduleStart(Date scheduleStart) {
-        ScheduleStart = scheduleStart;
-    }
-
-    public Date getScheduleEnd() {
-        return ScheduleEnd;
-    }
-
-    public void setScheduleEnd(Date scheduleEnd) {
-        ScheduleEnd = scheduleEnd;
+    public void setIsOpen(short isOpen) {
+        this.isOpen = isOpen;
     }
 }

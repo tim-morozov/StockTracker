@@ -1,10 +1,7 @@
 package com.StockTracker.StockTracker.Models;
 
 import jakarta.persistence.*;
-
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
 import java.time.LocalTime;
 
 
