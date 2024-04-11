@@ -4,7 +4,6 @@ import com.StockTracker.StockTracker.Models.Holiday;
 import com.StockTracker.StockTracker.Models.Market;
 import com.StockTracker.StockTracker.Models.MarketSchedule;
 import com.StockTracker.StockTracker.Models.Stock;
-import com.StockTracker.StockTracker.Models.ViewModels.MarketScheduleViewModel;
 import com.StockTracker.StockTracker.Models.ViewModels.MarketViewModel;
 import com.StockTracker.StockTracker.Service.HolidayService;
 import com.StockTracker.StockTracker.Service.MarketScheduleService;
@@ -19,11 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/administrator")

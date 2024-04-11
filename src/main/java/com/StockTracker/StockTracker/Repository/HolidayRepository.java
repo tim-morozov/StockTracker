@@ -1,7 +1,6 @@
 package com.StockTracker.StockTracker.Repository;
 
 import com.StockTracker.StockTracker.Models.Holiday;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

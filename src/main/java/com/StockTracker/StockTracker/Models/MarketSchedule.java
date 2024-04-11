@@ -1,11 +1,11 @@
 package com.StockTracker.StockTracker.Models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
-import java.util.Date;
 
 @Entity
 public class MarketSchedule {
