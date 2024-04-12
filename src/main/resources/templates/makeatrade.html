@@ -37,6 +37,10 @@
 
         <button type="submit" onclick="confirmTrade()">Submit Trade</button>
     </form>
+    <div th:if="${#fields.hasErrors('global')}">
+        <h3>Global errors:</h3>
+        <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+    </div>
     <script>
         function confirmTrade() {
             var result = confirm("Are you sure you want to make this trade?");

@@ -12,5 +12,7 @@ public interface MarketScheduleRepository extends CrudRepository<MarketSchedule,
 
     List<MarketSchedule> findAll();
 
+    MarketSchedule findByDay(String day);
+
 
 }

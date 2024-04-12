@@ -17,6 +17,10 @@ public class MarketScheduleService {
         return marketScheduleRepository.findAll();
     }
 
+    public MarketSchedule GetByDay(String dayName){
+        return marketScheduleRepository.findByDay(dayName);
+    }
+
     public void SaveMarketSchedule(List<MarketSchedule> marketSchedule){
         marketScheduleRepository.deleteAll();
         marketScheduleRepository.saveAll(marketSchedule);
