@@ -11,7 +11,7 @@
     <div>
         <h1>StockTracker</h1>
         <div th:if="${!#ctx.session.isEmpty()}">
-            <a th:href="@{login/logout}" class="right">Logout</a>
+            <a th:href="@{logout}" class="right">Logout</a>
         </div>
         <p></p>
     </div>
@@ -31,7 +31,7 @@
                 <label for="loginPassword" class="title">Password:  </label>
             </div>
             <div class="divField">
-                <input type="password" id="loginPassword" name="loginPassword" minlength="16" th:field="*{Password}"><br>
+                <input type="password" id="loginPassword" name="loginPassword" minlength="16" th:field="*{password}"><br>
                 <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Show</button><br>
             </div>
             <br>
