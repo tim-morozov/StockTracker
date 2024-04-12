@@ -8,10 +8,15 @@
     <link rel="stylesheet" th:href="@{/css/css.css}">
 </head>
 <body>
-    <h1>StockTracker</h1>
-    <p></p>
+    <div>
+        <h1>StockTracker</h1>
+        <div th:if="${!#ctx.session.isEmpty()}">
+            <a th:href="@{login/logout}" class="right">Logout</a>
+        </div>
+        <p></p>
+    </div>
     <div class="div1">
-        <a th:href="@{/index}">Stocks</a> | <span th:if="${!#ctx.session.isEmpty()}"><a  th:href="@{/user}">User</a> | </span> <div th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}"><a th:href="@{/administrator}">Administrator</a> | </div> <a th:href="@{/account}">Account</a>
+        <a th:href="@{/index}">Stocks</a> | <span th:if="${!#ctx.session.isEmpty()}"><a  th:href="@{/user}">User</a> | </span> <span th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}"><a th:href="@{/administrator}">Administrator</a> | </span> <a th:href="@{/account}">Account</a>
     </div>
     <p>User Functions</p>
     <p>Make a Trade</p>

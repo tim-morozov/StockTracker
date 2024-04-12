@@ -162,4 +162,8 @@ button[type="submit"]:hover {
 	color: red;
 }
 
+.right{
+	float: right;
+}
+
 
