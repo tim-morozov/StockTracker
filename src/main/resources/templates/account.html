@@ -53,7 +53,7 @@
                 <input type="password" id="password" name="password" minlength="16" th:field="*{password}">
                 <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Show</button><br>
             </div>
-            <div class="divButton">
+            <div class="divButton" th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}">
                 <input type="checkbox" name="checkbox" class="button" value="1" th:field="*{userType}">   Administrator?
             </div>
             <br>
