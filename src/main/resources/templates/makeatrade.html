@@ -22,6 +22,10 @@
     <p>Make a Trade</p>
     
     <form th:action="@{user/makeTrade}" method="post" th:object="${trade}">
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <h3>Error</h3>
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+        </div>
         <label for="stockTicker">Stock Ticker:</label>
         <input type="text" id="stockTicker" name="stockTicker" required th:field="*{ticker}">
 
@@ -35,12 +39,10 @@
         </select>
         <p></p>
 
+
         <button type="submit" onclick="confirmTrade()">Submit Trade</button>
     </form>
-    <div th:if="${#fields.hasErrors('global')}">
-        <h3>Global errors:</h3>
-        <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
-    </div>
+
     <script>
         function confirmTrade() {
             var result = confirm("Are you sure you want to make this trade?");

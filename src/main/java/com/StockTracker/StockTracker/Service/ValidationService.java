@@ -19,12 +19,17 @@ public class ValidationService {
     private MarketScheduleService marketScheduleService;
     @Autowired
     private MarketService marketService;
+    @Autowired
+    private StockService stockService;
+
     public List<String> ValidateTransaction(User user,
                                             int amount,
-                                            double price){
+                                            double price,
+                                            String option,
+                                            String ticker){
         List<String> errorList = new ArrayList<>();
         var transactionAmount = amount * price;
-        if(user.getBalance() < transactionAmount){
+        if(option.equalsIgnoreCase("buy")&&(user.getBalance() < transactionAmount)){
             errorList.add("Insufficient balance. Please deposit more money into your account");
         }
 
@@ -38,9 +43,15 @@ public class ValidationService {
 
         var time = LocalTime.now();
         var marketTime = marketService.GetMarketTime();
-        var validTime = marketTime.getMarketId() != 0 ? (time.isAfter(marketTime.getOpeningTime()) && time.isBefore(marketTime.getClosingTime())) : true;
+        var validTime = marketTime != null ? (time.isAfter(marketTime.getOpeningTime()) && time.isBefore(marketTime.getClosingTime())) : true;
         if(!validTime){
             errorList.add("Market is currently closed.");
+        }
+
+        var stock = stockService.GetByTicker(ticker);
+        var validStock = stock != null;
+        if(!validStock){
+            errorList.add(String.format("Stock %1$s is not available to trade ", ticker));
         }
 
         return errorList;

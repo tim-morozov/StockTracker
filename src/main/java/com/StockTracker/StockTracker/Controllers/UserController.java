@@ -7,23 +7,26 @@ import com.StockTracker.StockTracker.Models.TradeHistory;
 import com.StockTracker.StockTracker.Models.User;
 import com.StockTracker.StockTracker.Models.ViewModels.StockPortfolioViewModel;
 import com.StockTracker.StockTracker.Models.ViewModels.TradeViewModel;
-import com.StockTracker.StockTracker.Service.StockPortfolioService;
-import com.StockTracker.StockTracker.Service.StockService;
-import com.StockTracker.StockTracker.Service.TradeHistoryService;
-import com.StockTracker.StockTracker.Service.UserService;
+import com.StockTracker.StockTracker.Service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,6 +43,8 @@ public class UserController {
     StockService stockService;
     @Autowired
     TradeHistoryService tradeHistoryService;
+    @Autowired
+    ValidationService validationService;
 
 
     @RequestMapping()
@@ -105,23 +110,49 @@ public class UserController {
         ModelAndView mav = new ModelAndView("makeatrade");
         TradeViewModel trade = new TradeViewModel();
         mav.addObject("trade", trade);
+
         return mav;
     }
 
     @PostMapping("user/makeTrade")
-    public String MakeTrade(@ModelAttribute("Trade")TradeViewModel trade, HttpSession session){
+    public String MakeTrade(@Valid @ModelAttribute("Trade")TradeViewModel trade,
+                            BindingResult result,
+                            HttpSession session,
+                            Model model){
 
         var stock = stockService.GetByTicker(trade.getTicker());
-        var stockId = stock.getStockId();
+        var stockId = stock != null ? stock.getStockId() : 0;
+        var stockPrice = stock != null ? stock.getPrice() : 0;
 
         User user = (User) session.getAttribute("user");
         TradeHistory tradeHistory = new TradeHistory();
         tradeHistory.setUserId(user.getId());
         tradeHistory.setTicker(trade.getTicker());
         tradeHistory.setAmount(trade.getAmount());
-        tradeHistory.setPrice(stock.getPrice());
+        tradeHistory.setPrice(stockPrice);
         tradeHistory.setType(trade.getOption());
         tradeHistory.setTransactionDate(new Date());
+
+        var errors = validationService.ValidateTransaction(user,
+                trade.getAmount(),
+                stockPrice,
+                trade.getOption(),
+                trade.getTicker());
+
+        if(!errors.isEmpty()){
+            var errorsList = errors.stream()
+                    .map(e -> new ObjectError("globalerror", e))
+                    .toList();
+            errorsList.forEach(result::addError);
+
+            model.addAttribute("errors", errorsList);
+        }
+
+        if(result.hasErrors()){
+            model.addAttribute("trade", trade);
+
+            return "makeatrade";
+        }
 
         var currentStock = stockPortfolioService.GetByStockIdAndUserId((int)stockId, (int)user.getId());
         if (currentStock == null && trade.getOption().equals("buy")){

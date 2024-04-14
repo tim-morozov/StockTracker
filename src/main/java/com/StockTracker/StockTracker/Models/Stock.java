@@ -65,7 +65,7 @@ public class Stock {
 
     public void setTicker(String ticker) {
 
-        ticker = ticker;
+        this.ticker = ticker;
     }
 
     public double getPrice() {
