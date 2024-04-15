@@ -41,7 +41,7 @@ public class HomeController {
 
         List<StockDataViewModel> stockDataList = stockList.stream()
                .map(s -> new StockDataViewModel(s.getTicker(),
-                       Math.floor(s.getPrice()),
+                       RoundingHelper.round(s.getPrice(),2),
                        RoundingHelper.round(s.getPrice(), 2),
                        s.getVolume(),
                        RoundingHelper.round(s.getHigh(), 2),
