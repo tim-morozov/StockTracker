@@ -21,11 +21,7 @@
     <p>User Functions</p>
     <p>Make a Trade</p>
     
-    <form th:action="@{user/makeTrade}" method="post" th:object="${trade}">
-        <div th:if="${#fields.hasGlobalErrors()}">
-            <h3>Error</h3>
-            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-        </div>
+    <form th:action="@{/user/makeTrade}" method="post" th:object="${trade}">
         <label for="stockTicker">Stock Ticker:</label>
         <input type="text" id="stockTicker" name="stockTicker" required th:field="*{ticker}">
 
@@ -39,7 +35,10 @@
         </select>
         <p></p>
 
-
+        <div th:if="${(trade.errorList != null)}">
+            <h3>Error</h3>
+            <p th:each="err : ${trade.errorList}" th:text="${err.getDefaultMessage()}">...</p>
+        </div>
         <button type="submit" onclick="confirmTrade()">Submit Trade</button>
     </form>
 

@@ -1,9 +1,15 @@
 package com.StockTracker.StockTracker.Models.ViewModels;
 
+import org.springframework.validation.ObjectError;
+
+import java.util.List;
+
 public class TradeViewModel {
 
     private String ticker;
     private int amount;
+
+    public List<ObjectError> errorList;
 
     public String getTicker() {
         return ticker;

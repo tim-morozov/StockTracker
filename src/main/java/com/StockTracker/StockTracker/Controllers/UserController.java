@@ -110,7 +110,6 @@ public class UserController {
         ModelAndView mav = new ModelAndView("makeatrade");
         TradeViewModel trade = new TradeViewModel();
         mav.addObject("trade", trade);
-
         return mav;
     }
 
@@ -141,16 +140,18 @@ public class UserController {
 
         if(!errors.isEmpty()){
             var errorsList = errors.stream()
-                    .map(e -> new ObjectError("globalerror", e))
+                    .map(e -> new ObjectError("globalError", e))
                     .toList();
             errorsList.forEach(result::addError);
 
-            model.addAttribute("errors", errorsList);
+            trade.errorList = new ArrayList<ObjectError>();
+            trade.errorList.addAll(errorsList);
+
+            //model.addAttribute("errors", errorsList);
         }
 
         if(result.hasErrors()){
             model.addAttribute("trade", trade);
-
             return "makeatrade";
         }
 
