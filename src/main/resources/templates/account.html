@@ -16,7 +16,7 @@
         <p></p>
     </div>
     <div class="div1">
-        <a th:href="@{/index}">Stocks</a> | <span th:if="${!#ctx.session.isEmpty()}"><a  th:href="@{/user}">User</a> | </span> <div th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}"><a th:href="@{/administrator}">Administrator</a> | </div> <a th:href="@{/account}">Account</a>
+        <a th:href="@{/index}">Stocks</a> | <span th:if="${!#ctx.session.isEmpty()}"><a  th:href="@{/user}">User</a> | </span> <span th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}"><a th:href="@{/administrator}">Administrator</a> | </span> <a th:href="@{/account}">Account</a>
     </div>
     <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
     <p>Account Creation Form</p>
@@ -54,7 +54,7 @@
                 <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Show</button><br>
             </div>
             <div class="divButton" th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}">
-                <input type="checkbox" name="checkbox" class="button" value="1" th:field="*{userType}">   Administrator?
+                <input type="checkbox" name="checkbox" class="button" value="1" th:field="*{userType}"/>   Administrator?
             </div>
             <br>
             <button type="submit">Create Account</button>
