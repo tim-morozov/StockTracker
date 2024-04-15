@@ -18,7 +18,7 @@
     <div class="div1">
         <a th:href="@{/index}">Stocks</a> | <span th:if="${!#ctx.session.isEmpty()}"><a  th:href="@{/user}">User</a> | </span> <span th:if="${!#ctx.session.isEmpty() && session.user.userType == 1}"><a th:href="@{/administrator}">Administrator</a> | </span> <a th:href="@{/account}">Account</a>
     </div>
-    <p>This is where the current stocks available to trade will be seen</p>
+    <p>These are the current stocks available to trade</p>
     <table id="stockTable">
         <thead>
             <tr>
@@ -48,6 +48,7 @@
                         const row = document.createElement('tr');
                         const marketCap = stock.price * stock.volume;
                         const priceClass = stock.price > stock.openingPrice ? 'green' : 'red';
+
                         row.innerHTML = `
                             <td>${stock.ticker}</td>
                             <td>${stock.price}</td>
@@ -57,6 +58,7 @@
                             <td>${stock.high}</td>
                             <td>${stock.low}</td>
                         `;
+                        row.classList.add(priceClass);
                         stockDataContainer.appendChild(row);
                     });
                 });
