@@ -21,7 +21,7 @@
     <p>User Functions</p>
     <p>Make a Trade</p>
     
-    <form th:action="@{/user/makeTrade}" method="post" th:object="${trade}">
+    <form th:action="@{user/makeTrade}" method="post" th:object="${trade}">
         <label for="stockTicker">Stock Ticker:</label>
         <input type="text" id="stockTicker" name="stockTicker" required th:field="*{ticker}">
 
